@@ -1,32 +1,4 @@
-class Character:
-    def __init__(self, name, weaknesses):
-        self.name = name
-        self.current_insult = ""
-        self.score = 100
-        self.weaknesses = weaknesses
-
-    def input_insult(self):
-        return input(f"{self.name}, enter your insult: ")
-
-    def assemble_insult(self, phrase):
-        self.current_insult = phrase
-
-    def reset_insult(self):
-        self.current_insult = ""
-
-    def calculate_damage(self, opponent):
-        effectiveness = self.calculate_effectiveness(opponent)
-        damage = effectiveness + 4
-        opponent_score_before = opponent.score
-        opponent.score -= damage
-        return damage, opponent_score_before, opponent.score
-    
-    def effectiveness(self):
-        effect = 2
-        for weakness in self.weaknesses:
-            if weakness in self.current_insult:
-                effect*=2
-        return effect
+from classes import Character
 
 skeleton_weak = ["fleshless", "dog food", "can't aim"]
 skeleton = Character("Skeleton", skeleton_weak)
