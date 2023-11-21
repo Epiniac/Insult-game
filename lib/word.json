@@ -1,5 +1,6 @@
 {
-    "sujet" : ["Your mom", "You", "I"],
-    "verbe" : ["can't aim", "gets bitten by its mount"],
-    "complement" : ["fleshless", "dog food", "scared of cats", "a gliched pig", "creepy", "brainless", "bag of rotten flesh", "emergency food", "skinny tower", "ugly", "gold digger", "stupid", "unreliable", "empty pumpkin head", "tall and scary"]
+    "sujet" : ["Your mother","Your father", "You", "Your wife", "Your husband", "Your son", "Your daughter", "Your cat", "Your face", "Your style", "Your mutant version", "Your kind", "Your nose", "Your eyes", "The pixels of yours", "Your proportion", "Your weapons", "Your skills", "Your breath"],
+    "verbe" : ["can't aim", "gets bitten by", "looks like", "supports", "doesn't like", "bothers me", "was defeated by", "walks like", "was worse than", "will always be", "worked as","is as fragile as","eats with", "scared of" , "is", "was", "reminds me of", "acts like"],
+    "complement" : ["a fleshless", "a dog food", "cats", "a gliched pig", "a creepy", "a brainless", "a bag of rotten flesh", "a emergency food", "a skinny tower", "an ugly", "a gold digger", "a stupid", "an unreliable", "an empty pumpkin head", "a tall and scary", "a geek", "a dead silverfish", "as dark as the wither", "a pain", "a hot blaze", "a sweaty pigman"],
+    "links" : ["and", ", "]
 }

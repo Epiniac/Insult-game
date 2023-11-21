@@ -1,12 +1,9 @@
+import json
+
 class Character:
-    insult_block = [
-        "fleshless", "dog food", "can't aim", "scared of cats", "basically a glitched pig",
-        "creepy", "brainless", "bag of rotten flesh", "emergency food", 
-        "can't swim", "skinny tower", "ugly", "gold digger", "gets bitten by its mount",
-        "stupid", "unreliable", "empty pumpkin head", "tall and scary",
-        "Your mom", "dumdass", "little shit", "coward", "airhead", "asshole", "ass-kisser",
-        "bimbo", "bastard", "rat"
-    ]
+    
+    with open("word.json", 'r') as file:
+        insult_block = json.load(file)
 
     def __init__(self, name, weaknesses):
         self.name = name
@@ -25,19 +22,28 @@ class Character:
 
     def combo_meter(self):
         combo = 0
-        for block in self.insult_block:
-            if block in self.current_insult:
-                combo += 1
+        for block1 in self.insult_block["sujet"]:
+            if block1 in self.current_insult:
+                combo += 0.5
+        for block2 in self.insult_block["verbe"]:
+            if block2 in self.current_insult:
+                combo += 1.1
+        for block3 in self.insult_block["complement"]:
+            if block3 in self.current_insult:
+                combo += 1.8
+        for block4 in self.insult_block["links"]:
+            if block4 in self.current_insult:
+                combo += 0.4
         combo+= len(self.current_insult)*0.2
-        return combo
+        return int(combo)
     
     def effectiveness(self):
-        effect = 2
+        effect = 0.2
         for weakness in self.weaknesses:
             if weakness in self.current_insult:
                 print("\nEmotional Damage !!")
                 effect *= 2
-        return effect
+        return int(effect)
 
     def calculate_damage(self, opponent):
         effect = self.effectiveness()
@@ -48,22 +54,22 @@ class Character:
         return damage, opponent_score_before, opponent.score
 
 
-skeleton_weak = ["fleshless", "dog food", "can't aim"]
+skeleton_weak = ["a fleshless", "a dog food", "can't aim"]
 skeleton = Character("Skeleton", skeleton_weak)
 
-creeper_weak = ["scared of cats", "basicly a gliched pig", "creepy"]
+creeper_weak = ["cats", "a gliched pig", "a creepy"]
 creeper = Character("Creeper", creeper_weak)
 
-zombie_weak = ["brainless", "bag of rotten flesh", "emergency food"]
+zombie_weak = ["a brainless", "a bag of rotten flesh", "an emergency food"]
 zombie = Character("Zombie", zombie_weak)
 
-enderman_weak = ["can't swim", "skinny tower", "ugly"]
+enderman_weak = ["can't swim", "a skinny tower", "an ugly"]
 enderman = Character("Enderman", enderman_weak)
 
-piglin_weak = ["gold digger", "gets bitten by its mount", "stupid"]
+piglin_weak = ["a gold digger", "gets bitten by", "a stupid"]
 piglin = Character("Piglin", piglin_weak)
 
-golem_weak = ["unreliable", "empty pumpkin head", "tall and scary"]
+golem_weak = ["an unreliable", "an empty pumpkin head", "a tall and scary"]
 golem = Character("Golem",golem_weak)
 
 c_list = [skeleton, creeper, zombie, enderman, piglin, golem]
@@ -103,11 +109,11 @@ def main():
         player1.assemble_insult(player1.input_insult())
         print(f"{player1.name}'s insult: {player1.current_insult}")
 
-        damage, _, _ = player1.calculate_damage(player2)
-        print(f"\nDamage dealt to {player2.name}: {damage}\n")
-
         player2.assemble_insult(player2.input_insult())
         print(f"{player2.name}'s insult: {player2.current_insult}")
+
+        damage, _, _ = player1.calculate_damage(player2)
+        print(f"\nDamage dealt to {player2.name}: {damage}\n")
 
         damage, _, _ = player2.calculate_damage(player1)
         print(f"\nDamage dealt to {player1.name}: {damage}\n")
