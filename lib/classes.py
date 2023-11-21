@@ -69,6 +69,7 @@ golem = Character("Golem",golem_weak)
 c_list = [skeleton, creeper, zombie, enderman, piglin, golem]
 
 name_list = [skeleton.name,creeper.name,zombie.name,enderman.name,piglin.name,golem.name]
+
 def main():
 
     for character in c_list:
