@@ -28,6 +28,7 @@ class Character:
         for block in self.insult_block:
             if block in self.current_insult:
                 combo += 1
+        combo+= len(self.current_insult)*0.2
         return combo
     
     def effectiveness(self):
@@ -38,7 +39,7 @@ class Character:
                 effect *= 2
         return effect
 
-    def calculate_damage(self, player, opponent):
+    def calculate_damage(self, opponent):
         effect = self.effectiveness()
         combo = self.combo_meter()
         damage = effect + combo
@@ -46,13 +47,6 @@ class Character:
         opponent.score -= damage
         return damage, opponent_score_before, opponent.score
 
-    def effectiveness(self):
-        effect = 2
-        for weakness in self.weaknesses:
-            if weakness in self.current_insult:
-                print("\nEmotional Damage !!")
-                effect *= 2
-        return effect
 
 skeleton_weak = ["fleshless", "dog food", "can't aim"]
 skeleton = Character("Skeleton", skeleton_weak)
@@ -108,13 +102,13 @@ def main():
         player1.assemble_insult(player1.input_insult())
         print(f"{player1.name}'s insult: {player1.current_insult}")
 
-        damage, _, _ = player1.calculate_damage(player1,player2)
+        damage, _, _ = player1.calculate_damage(player2)
         print(f"\nDamage dealt to {player2.name}: {damage}\n")
 
         player2.assemble_insult(player2.input_insult())
         print(f"{player2.name}'s insult: {player2.current_insult}")
 
-        damage, _, _ = player2.calculate_damage(player2,player1)
+        damage, _, _ = player2.calculate_damage(player1)
         print(f"\nDamage dealt to {player1.name}: {damage}\n")
 
     print("\nGame Over!")
@@ -124,6 +118,8 @@ def main():
         print(f"{player2.name} wins!")
     else:
         print("It's a draw!")
+
+    print("! FATALITIES !")
 
 if __name__ == "__main__":
     main()
